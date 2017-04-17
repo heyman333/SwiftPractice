@@ -3,4 +3,4 @@
 import UIKit
 
 var str = "Hello, playground"
-print("eed")
+print("gitIgnoreTest")
