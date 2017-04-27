@@ -16,6 +16,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDataSour
     var data = ["San Francisco","New York","San Jose","Chicago","Los Angeles","Austin","Seattle"]
     var filtered:[String] = []
     
+    // MARK : - ViewLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,8 +25,9 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(searchActive) {
             return filtered.count
+        }else{
+            return data.count
         }
-        return data.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -57,13 +59,16 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDataSour
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        print("Text Changed!")
-        
         self.filtered = data.filter({ (text) -> Bool in
-            let tmp : NSString = text as NSString
+            let tmp: NSString = text as NSString
+            print(tmp)
             let range = tmp.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
+            print(range.location)
             return range.location != NSNotFound
         })
+        
+//        for text in filtered { print(text) }
+        
         if(filtered.count == 0){
             searchActive = false;
         } else {
@@ -71,6 +76,4 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDataSour
         }
         self.testTableView.reloadData()
     }
-    
 }
-    
