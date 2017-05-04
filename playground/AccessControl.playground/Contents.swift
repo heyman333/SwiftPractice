@@ -6,17 +6,19 @@ var str = "Hello, playground"
 
 class AccessTest {
     
-    private var a = 20
+    var a: Int {
+        return 20
+    }
     
-    public func getA() -> Int {
-        return a
+    init() {
+    
     }
 
 }
 
 let inst = AccessTest()
+print(inst.a)
 
-print(inst.getA())
 
 
 
